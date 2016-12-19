@@ -50,16 +50,23 @@ def generate_centroids(c_number, vectors=None):
         _cc = {'centroid': _c, 'name': n}
         centroids.append(_cc)
     return centroids
-
+#
 def cluster_points(points, centroids):
     _c = []
     for p in points:
-
-        _d = {'v': None, 'd': []}
+        _d = []
         for c in centroids:
-            _d['d'].append(euclidean_distance(p, c))
-        _c.append(min(x['d'] for x in _d))
-    return _c
+            print c, 'c'
+            _c = {'label': c['name'], 'dist': euclidean_distance(p, c['centroid']), 'points': p}
+            _d.append(_c)
+        c = min(_d, key=lambda d: d['dist'])
+        # _c.append(min(_d['d']))
+    return c
+
+# def cluster_points(points, centroids):
+#     for centr in centroids:
+
+
 
 # dla dazdego pkt sprawdz dystans od centroidu
 # przypisz pkt do grupy o nazwie centroidu
@@ -70,7 +77,10 @@ def cluster_points(points, centroids):
 
 print generate_centroids(2, points), 'centroids'
 centroids = generate_centroids(2, points)
-# print cluster_points(points, centroids)
+print cluster_points(points, centroids)
+
+for i in range(10):
+
 
 # for p in points:
 #     _dist = []
