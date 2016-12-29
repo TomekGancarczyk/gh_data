@@ -58,8 +58,6 @@ def gen_token(vectors):
         t += str(v.label)
     return t
 
-
-
 tt = {'dist' : [12,33.4], 'label': [0,1]}
 
 
@@ -111,3 +109,17 @@ centr = new_centr.features
 cluster_points(vectors, centroids)
 print [x.label for x in vectors]
 print gen_token(vectors) , 'token'
+
+clusters = []
+
+for c in range(c_num):
+    cluster = []
+    for v in vectors:
+
+        # print c, v.label
+        if v.label == c:
+            cluster.append(v)
+    clusters.append(cluster)
+print len(clusters[0]), len(clusters[1])
+
+
