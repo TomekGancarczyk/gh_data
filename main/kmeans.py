@@ -35,14 +35,32 @@ def calculate_centroid(vectors=None):
 
 def cluster_points(vectors, centroids):
     clusters = []
-    for p in vectors:
-        _d = []
+    for v in vectors:
+        d = []
+        # _d = {'dist': [], 'label': []}
         for c in centroids:
-            _c = {'label': c['name'], 'dist': Vector.euclidean_distance(p, c['centroid']), 'points': p}
-            _d.append(_c)
-        c = min(_d, key=lambda d: d['dist'])
+            _d = {'dist': None, 'label': None}
+            _c = Vector.euclidean_distance(v, c)
+            _d['dist'] = _c
+            _d['label'] = c.label
+            d.append(_d)
+        # print d, 'd'
+        # my_dict.iteritems(), key = itemgetter(1)
+        c = min(d, key=lambda _x: _x['dist'])
+        # print c, 'c'
+        v.set_label(c['label'])
         clusters.append(c)
     return clusters
+
+def gen_token(vectors):
+    t = ''
+    for v in vectors:
+        t += str(v.label)
+    return t
+
+
+
+tt = {'dist' : [12,33.4], 'label': [0,1]}
 
 
 class Vector(object):
@@ -86,7 +104,10 @@ for i in points:
     _vec = Vector(i)
     vectors.append(_vec)
 # print points
-# centroids = initialize_centroids(c_num, points)
+centroids = initialize_centroids(c_num, points)
 new_centr = calculate_centroid(vectors)
 print new_centr.features, 'new centr'
 centr = new_centr.features
+cluster_points(vectors, centroids)
+print [x.label for x in vectors]
+print gen_token(vectors) , 'token'
