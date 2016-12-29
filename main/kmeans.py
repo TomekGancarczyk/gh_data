@@ -107,19 +107,36 @@ new_centr = calculate_centroid(vectors)
 print new_centr.features, 'new centr'
 centr = new_centr.features
 cluster_points(vectors, centroids)
-print [x.label for x in vectors]
-print gen_token(vectors) , 'token'
+print [x.label for x in vectors], ' before'
+print gen_token(vectors), 'token', ' before'
 
-clusters = []
 
-for c in range(c_num):
-    cluster = []
-    for v in vectors:
+tokens = []
+for i in range(10):
 
-        # print c, v.label
-        if v.label == c:
-            cluster.append(v)
-    clusters.append(cluster)
-print len(clusters[0]), len(clusters[1])
+    clusters = []
+    new_centroids = []
+    for c in range(c_num):
+        cluster = []
+
+        for v in vectors:
+
+            # print c, v.label
+            if v.label == c:
+                cluster.append(v)
+        _centr = calculate_centroid(cluster)
+        _centr.set_label(c)
+        new_centroids.append(_centr)
+        # clusters.append(cluster)
+    # print new_centroids, 'new centroids'
+    cluster_points(vectors, new_centroids)
+    # print [x.label for x in vectors], ' after'
+    tokens = gen_token(vectors)
+    # print token, 'token', ' after'
+print tokens
+# for vec in clusters:
+#     calculate_centroid(vec)
+
+# print len(clusters[0]), len(clusters[1])
 
 
