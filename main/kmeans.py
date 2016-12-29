@@ -96,7 +96,7 @@ class Vector(object):
 
 dist_x = []
 dist_y = []
-points = zip(feat_1, feat_2)
+points = zip(feat_1, feat_2, feat_3)
 vectors = []
 for i in points:
     _vec = Vector(i)
@@ -138,5 +138,6 @@ print tokens
 #     calculate_centroid(vec)
 
 # print len(clusters[0]), len(clusters[1])
-
+# TODO normalizacja, drzewa z gh, petla i break gdy token sie nie zmienia, parallel processing, output
+# TODO naprawic bledy z mierzeniem dystansu
 
