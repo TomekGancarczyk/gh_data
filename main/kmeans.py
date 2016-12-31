@@ -147,4 +147,6 @@ print tokens
 # print len(clusters[0]), len(clusters[1])
 # TODO normalizacja, drzewa z gh, petla i break gdy token sie nie zmienia, parallel processing, output
 # TODO naprawic bledy z mierzeniem dystansu
+# TODO dodac gh klasyfikujace i uczace sie
+# TODO dodac optymalizacje
 
