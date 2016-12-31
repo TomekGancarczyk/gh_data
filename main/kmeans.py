@@ -93,10 +93,17 @@ class Vector(object):
 # dla grupy wygeneruj na nowo centroid
 # sprawdz dystans pkt od nowych centroidow
 # przypisz na nowo
-
+data = []
+for v in data_set:
+    # print v
+    _d = v.split(",")
+    # print _d, 'split'
+    data.append([float(i) for i in _d])
+# print data, 'data'
 dist_x = []
 dist_y = []
-points = zip(feat_1, feat_2, feat_3)
+# points = zip(feat_1, feat_2, feat_3)
+points = data
 vectors = []
 for i in points:
     _vec = Vector(i)
