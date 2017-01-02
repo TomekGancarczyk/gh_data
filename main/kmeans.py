@@ -108,15 +108,15 @@ for i in range(len(data[0])):
     for j in data:
         col.append(j[i])
     col_max.append(max(col))
-print col_max, 'col max'
+# print col_max, 'col max'
 data_normalized = []
 for row in data:
     _d = []
     for i, item in enumerate(row):
         _d.append(item/ col_max[i])
     data_normalized.append(_d)
-# print data[0]
-# print data_normalized[131]
+print data[0]
+print data_normalized[131]
 
 dist_x = []
 dist_y = []
