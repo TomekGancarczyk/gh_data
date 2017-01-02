@@ -99,7 +99,24 @@ for v in data_set:
     _d = v.split(",")
     # print _d, 'split'
     data.append([float(i) for i in _d])
-# print data, 'data'
+
+col_max = []
+print len(data[0])
+for i in range(len(data[0])):
+    col = []
+    for j in data:
+        col.append(j[i])
+    col_max.append(max(col))
+print col_max, 'col max'
+data_normalized = []
+for row in data:
+    _d = []
+    for i, item in enumerate(row):
+        _d.append(item/ col_max[i])
+    data_normalized.append(_d)
+print data[0]
+print data_normalized[131]
+
 dist_x = []
 dist_y = []
 # points = zip(feat_1, feat_2, feat_3)
@@ -111,11 +128,11 @@ for i in points:
 # print points
 centroids = initialize_centroids(c_num, points)
 new_centr = calculate_centroid(vectors)
-print new_centr.features, 'new centr'
+# print new_centr.features, 'new centr'
 centr = new_centr.features
 cluster_points(vectors, centroids)
-print [x.label for x in vectors], ' before'
-print gen_token(vectors), 'token', ' before'
+# print [x.label for x in vectors], ' before'
+# print gen_token(vectors), 'token', ' before'
 
 
 tokens = []
@@ -140,7 +157,7 @@ for i in range(10):
     # print [x.label for x in vectors], ' after'
     tokens = gen_token(vectors)
     # print token, 'token', ' after'
-print tokens
+# print tokens
 # for vec in clusters:
 #     calculate_centroid(vec)
 
@@ -149,4 +166,5 @@ print tokens
 # TODO naprawic bledy z mierzeniem dystansu
 # TODO dodac gh klasyfikujace i uczace sie
 # TODO dodac optymalizacje
+# TODO dodac kominikaty o bledach i wyjatki gdy ktos zle podaje input itp
 
