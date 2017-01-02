@@ -39,6 +39,7 @@ def cluster_points(vectors, centroids):
         d = []
         # _d = {'dist': [], 'label': []}
         for c in centroids:
+            # print c.features
             _d = {'dist': None, 'label': None}
             _c = Vector.euclidean_distance(v, c)
             _d['dist'] = _c
@@ -101,7 +102,7 @@ for v in data_set:
     data.append([float(i) for i in _d])
 
 col_max = []
-print len(data[0])
+# print len(data[0])
 for i in range(len(data[0])):
     col = []
     for j in data:
@@ -114,13 +115,13 @@ for row in data:
     for i, item in enumerate(row):
         _d.append(item/ col_max[i])
     data_normalized.append(_d)
-print data[0]
-print data_normalized[131]
+# print data[0]
+# print data_normalized[131]
 
 dist_x = []
 dist_y = []
 # points = zip(feat_1, feat_2, feat_3)
-points = data
+points = data_normalized
 vectors = []
 for i in points:
     _vec = Vector(i)
@@ -136,7 +137,7 @@ cluster_points(vectors, centroids)
 
 
 tokens = []
-for i in range(10):
+for i in range(50):
 
     clusters = []
     new_centroids = []
@@ -153,16 +154,17 @@ for i in range(10):
         new_centroids.append(_centr)
         # clusters.append(cluster)
     # print new_centroids, 'new centroids'
-    cluster_points(vectors, new_centroids)
-    # print [x.label for x in vectors], ' after'
-    tokens = gen_token(vectors)
+    if new_centroids:
+        cluster_points(vectors, new_centroids)
+        # print [x.label for x in vectors], ' after'
+        tokens = gen_token(vectors)
     # print token, 'token', ' after'
-# print tokens
+print tokens
 # for vec in clusters:
 #     calculate_centroid(vec)
 
 # print len(clusters[0]), len(clusters[1])
-# TODO normalizacja, drzewa z gh, petla i break gdy token sie nie zmienia, parallel processing, output
+# TODO normalizacja, petla i break gdy token sie nie zmienia, parallel processing, output
 # TODO naprawic bledy z mierzeniem dystansu
 # TODO dodac gh klasyfikujace i uczace sie
 # TODO dodac optymalizacje
