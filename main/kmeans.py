@@ -137,7 +137,7 @@ cluster_points(vectors, centroids)
 
 
 tokens = []
-for i in range(50):
+for i in range(10):
 
     clusters = []
     new_centroids = []
