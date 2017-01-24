@@ -143,6 +143,12 @@ cluster_points(vectors, centroids)
 # print [x.label for x in vectors], ' before'
 # print gen_token(vectors), 'token', ' before'
 
+def cluster(vec, centr):
+    for c in centr:
+        for v in vec:
+            if v.label == c:
+                cluster.append(v)
+        _centr = calculate_centroid(cluster)
 
 tokens = []
 for i in range(20):
