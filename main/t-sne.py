@@ -1,14 +1,28 @@
 import pandas as pd
 from sklearn.manifold import TSNE
-tsne = TSNE(random_state=42, n_components=3)
-file = r"C:\Users\T440p\Downloads\iris_norm.csv"
+from sklearn import preprocessing
+import matplotlib as plt
+import seaborn as sns
+tsne = TSNE(random_state=12, n_components=2, perplexity=40, learning_rate=100)
+file = r"C:\Users\T440p\Downloads\iris (1).csv"
 file2 = r"C:\Users\T440p\Downloads\iris_tsne.csv"
-df = pd.read_csv(file, delimiter=';')
-digits = tsne.fit_transform(df)
-df_tsne = pd.DataFrame(digits)
-df_tsne.to_csv(file2)
+col = ['Sepal.Length', 'Sepal.Width', 'Petal.Length', 'Petal.Length']
+df = pd.read_csv(file, delimiter=',', usecols=col)
+# print df
 
-print digits
+min_max_scaler = preprocessing.MinMaxScaler()
+np_scaled = min_max_scaler.fit_transform(df)
+df_normalized = pd.DataFrame(np_scaled)
+# print df_normalized
+
+digits = tsne.fit_transform(df)
+# error = tsne.
+# print digits.kl_divergence_
+df_tsne = pd.DataFrame(digits, columns=['x', 'y'])
+df_tsne.to_csv(file2)
+# sns.lmplot('x', 'y', data=df_tsne, fit_reg=False)
+# sns.plt.show()
+# print digits
 
 # normalizacja
 # for v in data_set:

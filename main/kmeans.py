@@ -8,15 +8,22 @@ def initialize_centroids(c_number, vectors=None):
     :param c_shape: (number of centroids, dimensions number)
     :return: centroid vectors
     """
-    c_shape = (c_number, len(vectors[0]))
+    _centroids = random.sample(vectors, c_number)
     centroids = []
-    for n in range(c_shape[0]):
-        _c = []
-        for r in range(c_shape[1]):
-            _c.append(random.random())
-        _c_vec = Vector(_c)
-        _c_vec.set_label(n)
+    for i, centr in enumerate(_centroids):
+        _c_vec = Vector(centr)
+        _c_vec.set_label(i)
         centroids.append(_c_vec)
+
+    # c_shape = (c_number, len(vectors[0]))
+    # centroids = []
+    # for n in range(c_shape[0]):
+    #     _c = []
+    #     for r in range(c_shape[1]):
+    #         _c.append(random.random())
+    #     _c_vec = Vector(_c)
+    #     _c_vec.set_label(n)
+    #     centroids.append(_c_vec)
     return centroids
 
 
@@ -128,6 +135,7 @@ for i in points:
     vectors.append(_vec)
 # print points
 centroids = initialize_centroids(c_num, points)
+# print centroids
 new_centr = calculate_centroid(vectors)
 # print new_centr.features, 'new centr'
 centr = new_centr.features
@@ -137,7 +145,7 @@ cluster_points(vectors, centroids)
 
 
 tokens = []
-for i in range(10):
+for i in range(20):
 
     clusters = []
     new_centroids = []
@@ -159,6 +167,9 @@ for i in range(10):
         # print [x.label for x in vectors], ' after'
         tokens = gen_token(vectors)
     # print token, 'token', ' after'
+labels = []
+for v in vectors:
+    labels.append(v.label)
 print tokens
 # for vec in clusters:
 #     calculate_centroid(vec)
