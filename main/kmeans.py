@@ -150,6 +150,16 @@ def cluster(vec, centr):
                 cluster.append(v)
         _centr = calculate_centroid(cluster)
 
+# B = 0
+# warunek = 1
+# while( abs(warunek > 0.001) ) {
+#
+# 	A = B;
+# 	B = wynik dzialania petli
+# 	warunek = A - B
+#
+# }
+
 tokens = []
 for i in range(20):
 
